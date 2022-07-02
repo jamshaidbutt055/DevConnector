@@ -4,6 +4,7 @@ const APP = express()
 const PORT = process.env.PORT || 5000
 
 connectDB()
+APP.use(express.json({ extended: true }))
 
 APP.get("/", (req, res) => res.send("API Called"))
 APP.use("/api/auth", require("./routes/api/auth"))
