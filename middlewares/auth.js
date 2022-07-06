@@ -4,7 +4,7 @@ const config = require("config")
 const authMiddleware = (req, res, next) => {
   const token = req.header("x-auth-token")
   if (!token) {
-    return res.json({
+    return res.status(404).json({
       errors: { msg: "Token is missing, Authorization Failed." },
     })
   }

@@ -38,7 +38,7 @@ router.post(
       if (!user || !isMatched) {
         return res
           .status(400)
-          .json({ errors: [{ msg: "Invalid Email or Password." }] })
+          .json({ errors: { msg: "Invalid Email or Password." } })
       }
 
       const payload = {

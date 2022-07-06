@@ -1,7 +1,7 @@
 import { combineReducers } from "redux"
-import displayAlert from "./alert"
-import register from "./auth"
+import alert from "./alert"
+import auth from "./auth"
 export default combineReducers({
-  displayAlert,
-  register,
+  alert,
+  auth,
 })
