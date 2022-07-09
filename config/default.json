@@ -1,5 +1,6 @@
 {
-  "mongoURI": "mongodb+srv://jamshaidbutt055:Ch4r51-g3@cluster0.qepg6os.mongodb.net/?retryWrites=true&w=majority",
+  "online_mongoURI": "mongodb+srv://jamshaidbutt055:Ch4r51-g3@cluster0.qepg6os.mongodb.net/?retryWrites=true&w=majority",
+  "mongoURI": "mongodb://127.0.0.1:27017/",
   "jwtSecret": "mysecretforjwttoken",
   "githubSecret": "38ce3fe14e36b637af9c7c9fcf1b0ba2d3b56c43",
   "githubClientId": "926ef8eb69b99685535e"

@@ -1,15 +1,21 @@
 import "./App.css"
 import React, { useEffect } from "react"
-import Navbar from "./components/layout/Navbar"
-import Landing from "./components/layout/Landing"
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom"
-import Login from "./components/auth/Login"
-import Register from "./components/auth/Register"
 import { Provider } from "react-redux"
 import store from "./redux/store"
-import Alert from "./components/layout/alert"
 import setAuth from "./utils/setAuthToken"
 import { logUser } from "./redux/actions/auth"
+
+import Dashboard from "./components/dashboard/dashboard"
+import Navbar from "./components/layout/Navbar"
+import Landing from "./components/layout/Landing"
+import Login from "./components/auth/Login"
+import Register from "./components/auth/Register"
+import Alert from "./components/layout/alert"
+import PrivateRoute from "./components/PrivateRoute"
+import CreateProfile from "./components/profile/createProfile"
+import Education from "./components/profile/education"
+import Experience from "./components/profile/experience"
 
 if (localStorage.token) {
   setAuth(localStorage.token)
@@ -28,25 +34,50 @@ function App() {
             <Alert />
             <Routes>
               <Route path="/" element={<Landing />} />
-
+              <Route path="/login" element={<Login />} />
+              <Route path="/register" element={<Register />} />
               <Route
-                path="/login"
+                path="/dashboard"
                 element={
-                  <section className="container">
-                    <Login />
-                  </section>
+                  <PrivateRoute redirectTo="/login">
+                    <Dashboard />
+                  </PrivateRoute>
                 }
               />
               <Route
-                path="/register"
+                path="/createProfile"
                 element={
-                  <section className="container">
-                    <Register />
-                  </section>
+                  <PrivateRoute redirectTo="/login">
+                    <CreateProfile />
+                  </PrivateRoute>
+                }
+              />
+              <Route
+                path="/editProfile"
+                element={
+                  <PrivateRoute redirectTo="/login">
+                    <CreateProfile />
+                  </PrivateRoute>
+                }
+              />
+              <Route
+                path="/addEducation"
+                element={
+                  <PrivateRoute redirectTo="/login">
+                    <Education />
+                  </PrivateRoute>
+                }
+              />
+              <Route
+                path="/addExperience"
+                element={
+                  <PrivateRoute redirectTo="/login">
+                    <Experience />
+                  </PrivateRoute>
                 }
               />
             </Routes>
-          </section>{" "}
+          </section>
         </React.Fragment>
       </Router>
     </Provider>

@@ -1,6 +1,7 @@
 const express = require("express")
 const config = require("config")
 const Profile = require("../../models/Profile")
+const Post = require("../../models/Post")
 const User = require("../../models/User")
 const authMiddleware = require("../../middlewares/auth")
 const { check, validationResult } = require("express-validator")
@@ -14,7 +15,7 @@ router.get("/me", authMiddleware, async (req, res) => {
       ["name", "avatar"]
     )
     if (!profile) {
-      res.status(404).json({ msg: "There is no profile for this user." })
+      return res.status(404).json({ msg: "There is no profile for this user." })
     }
     res.json(profile)
   } catch (err) {
@@ -118,6 +119,7 @@ router.get("/user/:userId", async (req, res) => {
 
 router.delete("/", authMiddleware, async (req, res) => {
   try {
+    await Post.deleteMany({ user: req.user.id })
     await Profile.findOneAndRemove({ user: req.user.id })
     await User.findOneAndRemove({ _id: req.user.id })
 

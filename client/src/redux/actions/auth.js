@@ -6,6 +6,7 @@ import {
   LOGIN_SUCCESS,
   LOGIN_FAILED,
   LOGOUT,
+  CLEAR_PROFILE,
 } from "../../types"
 import axios from "axios"
 import { setAlert } from "./alert"
@@ -26,6 +27,9 @@ export const logUser = () => async (dispatch) => {
 export const logout = () => async (dispatch) => {
   dispatch({
     type: LOGOUT,
+  })
+  dispatch({
+    type: CLEAR_PROFILE,
   })
 }
 
