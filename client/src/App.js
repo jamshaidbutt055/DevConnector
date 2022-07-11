@@ -16,6 +16,8 @@ import PrivateRoute from "./components/PrivateRoute"
 import CreateProfile from "./components/profile/createProfile"
 import Education from "./components/profile/education"
 import Experience from "./components/profile/experience"
+import Profiles from "./components/profile/profiles"
+import Profile from "./components/profile/profile"
 
 if (localStorage.token) {
   setAuth(localStorage.token)
@@ -34,6 +36,8 @@ function App() {
             <Alert />
             <Routes>
               <Route path="/" element={<Landing />} />
+              <Route path="/profiles" element={<Profiles />} />
+              <Route path="/profile/:id" element={<Profile />} />
               <Route path="/login" element={<Login />} />
               <Route path="/register" element={<Register />} />
               <Route
