@@ -7,6 +7,7 @@ import {
   CREATE_PROFILE,
   UPDATE_PROFILE,
   CLEAR_PROFILE,
+  CLEAR_REPO,
   ACCOUNT_DELETED,
   REPOS_RECEIVED,
 } from "../../types"
@@ -40,6 +41,7 @@ export const getProfiles = () => async (dispatch) => {
 
 export const getProfileById = (id) => async (dispatch) => {
   try {
+    dispatch({ type: CLEAR_PROFILE })
     const res = await axios.get(`/api/profile/user/${id}`)
     dispatch({ type: GET_PROFILE, payload: res.data })
   } catch (err) {
@@ -52,9 +54,10 @@ export const getProfileById = (id) => async (dispatch) => {
 
 export const getGithubRepos = (username) => async (dispatch) => {
   try {
-    dispatch({ type: GET_REPOS })
+    //  dispatch({ type: GET_REPOS })
     const res = await axios.get(`/api/profile/github/${username}`)
-    dispatch({ type: REPOS_RECEIVED, payload: res.data })
+    //dispatch({ type: REPOS_RECEIVED, payload: res.data })
+    dispatch({ type: GET_REPOS, payload: res.data })
   } catch (err) {
     dispatch({
       type: GITHUB_ERROR,
@@ -203,5 +206,11 @@ export const deleteAccount = () => {
         })
       }
     }
+  }
+}
+
+export const clearRepo = () => {
+  return async (dispatch) => {
+    dispatch({ type: CLEAR_REPO })
   }
 }

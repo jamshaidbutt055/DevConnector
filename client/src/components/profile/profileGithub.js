@@ -10,9 +10,9 @@ export const ProfileGithub = ({
   error,
 }) => {
   useEffect(() => {
-    console.log("calling")
-    if (repos.length === 0 && !loading && Object.keys(error).length === 0)
-      getGithubRepos(username)
+    //if (repos.length === 0 && !loading && Object.keys(error).length === 0)
+    console.log(username)
+    getGithubRepos(username)
   }, [])
   return (
     <div className="profile-github">

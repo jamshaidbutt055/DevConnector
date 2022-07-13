@@ -19,7 +19,7 @@ export const Profile = ({
   useEffect(() => {
     getProfileById(id)
   }, [getProfileById])
-  return profile === null || loading ? (
+  return !profile || loading ? (
     <Spinner />
   ) : (
     <>
@@ -56,7 +56,7 @@ export const Profile = ({
             <h4>No Education</h4>
           )}
         </div>
-        {profile.githubusername && (
+        {profile.user._id === id && profile.githubusername && (
           <ProfileGithub username={profile.githubusername} />
         )}
       </div>

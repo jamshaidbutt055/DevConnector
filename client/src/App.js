@@ -18,6 +18,8 @@ import Education from "./components/profile/education"
 import Experience from "./components/profile/experience"
 import Profiles from "./components/profile/profiles"
 import Profile from "./components/profile/profile"
+import Posts from "./components/posts/posts"
+import Post from "./components/posts/post"
 
 if (localStorage.token) {
   setAuth(localStorage.token)
@@ -77,6 +79,23 @@ function App() {
                 element={
                   <PrivateRoute redirectTo="/login">
                     <Experience />
+                  </PrivateRoute>
+                }
+              />
+              <Route
+                path="/posts/:id"
+                element={
+                  <PrivateRoute redirectTo="/login">
+                    <Post />
+                  </PrivateRoute>
+                }
+              />
+
+              <Route
+                path="/posts"
+                element={
+                  <PrivateRoute redirectTo="/login">
+                    <Posts />
                   </PrivateRoute>
                 }
               />
